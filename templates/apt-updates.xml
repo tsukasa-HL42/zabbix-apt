@@ -1,170 +1,104 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
-    <version>3.2</version>
-    <date>2017-01-29T14:52:23Z</date>
+    <version>5.4</version>
+    <date>2021-09-03T15:23:51Z</date>
     <groups>
         <group>
+            <uuid>7df96b18c230490a9a0a9e2307226338</uuid>
             <name>Templates</name>
         </group>
     </groups>
     <templates>
         <template>
+            <uuid>ab900107205f48a5a79f6e83aaf610b9</uuid>
             <template>Template App APT Updates</template>
             <name>Template App APT Updates</name>
-            <description/>
             <groups>
                 <group>
                     <name>Templates</name>
                 </group>
             </groups>
-            <applications>
-                <application>
-                    <name>APT</name>
-                </application>
-            </applications>
             <items>
                 <item>
+                    <uuid>9f7e2ca8dc7942b4953dd169fb6747db</uuid>
                     <name>Security Updates</name>
-                    <type>0</type>
-                    <snmp_community/>
-                    <multiplier>0</multiplier>
-                    <snmp_oid/>
                     <key>apt.security</key>
-                    <delay>900</delay>
-                    <history>90</history>
-                    <trends>365</trends>
-                    <status>0</status>
-                    <value_type>3</value_type>
-                    <allowed_hosts/>
-                    <units/>
-                    <delta>0</delta>
-                    <snmpv3_contextname/>
-                    <snmpv3_securityname/>
-                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                    <snmpv3_authpassphrase/>
-                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                    <snmpv3_privpassphrase/>
-                    <formula>1</formula>
-                    <delay_flex/>
-                    <params/>
-                    <ipmi_sensor/>
-                    <data_type>0</data_type>
-                    <authtype>0</authtype>
-                    <username/>
-                    <password/>
-                    <publickey/>
-                    <privatekey/>
-                    <port/>
-                    <description/>
-                    <inventory_link>0</inventory_link>
-                    <applications>
-                        <application>
-                            <name>APT</name>
-                        </application>
-                    </applications>
-                    <valuemap/>
-                    <logtimefmt/>
+                    <delay>1d</delay>
+                    <history>30d</history>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <tags>
+                        <tag>
+                            <tag>Application</tag>
+                            <value>APT</value>
+                        </tag>
+                    </tags>
                 </item>
                 <item>
+                    <uuid>7e25def970a84995b72a546bdb02c5c5</uuid>
+                    <name>Security Updates count</name>
+                    <key>apt.security-lc</key>
+                    <delay>1d</delay>
+                    <history>30d</history>
+                    <tags>
+                        <tag>
+                            <tag>Application</tag>
+                            <value>APT</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>1020c304c85e424bb85bf364cbf5f09e</uuid>
                     <name>Non-Critical Updates</name>
-                    <type>0</type>
-                    <snmp_community/>
-                    <multiplier>0</multiplier>
-                    <snmp_oid/>
                     <key>apt.updates</key>
-                    <delay>900</delay>
-                    <history>90</history>
-                    <trends>365</trends>
-                    <status>0</status>
-                    <value_type>3</value_type>
-                    <allowed_hosts/>
-                    <units/>
-                    <delta>0</delta>
-                    <snmpv3_contextname/>
-                    <snmpv3_securityname/>
-                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                    <snmpv3_authpassphrase/>
-                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                    <snmpv3_privpassphrase/>
-                    <formula>1</formula>
-                    <delay_flex/>
-                    <params/>
-                    <ipmi_sensor/>
-                    <data_type>0</data_type>
-                    <authtype>0</authtype>
-                    <username/>
-                    <password/>
-                    <publickey/>
-                    <privatekey/>
-                    <port/>
-                    <description/>
-                    <inventory_link>0</inventory_link>
-                    <applications>
-                        <application>
-                            <name>APT</name>
-                        </application>
-                    </applications>
-                    <valuemap/>
-                    <logtimefmt/>
+                    <delay>1d</delay>
+                    <history>30d</history>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <tags>
+                        <tag>
+                            <tag>Application</tag>
+                            <value>APT</value>
+                        </tag>
+                    </tags>
+                </item>
+                <item>
+                    <uuid>61b656de95544835984db066a375465a</uuid>
+                    <name>Non-Critical Updates count</name>
+                    <key>apt.updates-lc</key>
+                    <delay>1d</delay>
+                    <history>30d</history>
+                    <tags>
+                        <tag>
+                            <tag>Application</tag>
+                            <value>APT</value>
+                        </tag>
+                    </tags>
                 </item>
             </items>
-            <discovery_rules/>
-            <httptests/>
-            <macros/>
-            <templates/>
-            <screens/>
         </template>
     </templates>
     <triggers>
         <trigger>
-            <expression>{Template App APT Updates:apt.security.last()}&gt;0 and {Template App APT Updates:apt.updates.last()}&gt;0</expression>
-            <recovery_mode>0</recovery_mode>
-            <recovery_expression/>
+            <uuid>e2fdafc15f5b4d5da61b2bbdadcb1735</uuid>
+            <expression>last(/Template App APT Updates/apt.security-lc)&gt;0 and last(/Template App APT Updates/apt.updates-lc)&gt;0</expression>
             <name>{ITEM.LASTVALUE1} security and {ITEM.LASTVALUE2} regular updates on {HOST.NAME}</name>
-            <correlation_mode>0</correlation_mode>
-            <correlation_tag/>
-            <url/>
-            <status>0</status>
-            <priority>2</priority>
-            <description/>
-            <type>0</type>
-            <manual_close>1</manual_close>
-            <dependencies/>
-            <tags/>
+            <priority>WARNING</priority>
+            <manual_close>YES</manual_close>
         </trigger>
         <trigger>
-            <expression>{Template App APT Updates:apt.updates.last()}&gt;0 and {Template App APT Updates:apt.security.last()}=0</expression>
-            <recovery_mode>0</recovery_mode>
-            <recovery_expression/>
+            <uuid>61d9a47e71914a21ab18499d2fe1f4c2</uuid>
+            <expression>last(/Template App APT Updates/apt.updates-lc)&gt;0 and last(/Template App APT Updates/apt.security-lc)=0</expression>
             <name>{ITEM.LASTVALUE} regular updates on {HOST.NAME}</name>
-            <correlation_mode>0</correlation_mode>
-            <correlation_tag/>
-            <url/>
-            <status>0</status>
-            <priority>1</priority>
-            <description/>
-            <type>0</type>
-            <manual_close>1</manual_close>
-            <dependencies/>
-            <tags/>
+            <priority>INFO</priority>
+            <manual_close>YES</manual_close>
         </trigger>
         <trigger>
-            <expression>{Template App APT Updates:apt.security.last()}&gt;0 and {Template App APT Updates:apt.updates.last()}=0</expression>
-            <recovery_mode>0</recovery_mode>
-            <recovery_expression/>
+            <uuid>c1083010fed846a199220a0685a7e998</uuid>
+            <expression>last(/Template App APT Updates/apt.security-lc)&gt;0 and last(/Template App APT Updates/apt.updates-lc)=0</expression>
             <name>{ITEM.LASTVALUE} security updates on {HOST.NAME}</name>
-            <correlation_mode>0</correlation_mode>
-            <correlation_tag/>
-            <url/>
-            <status>0</status>
-            <priority>2</priority>
-            <description/>
-            <type>0</type>
-            <manual_close>1</manual_close>
-            <dependencies/>
-            <tags/>
+            <priority>WARNING</priority>
+            <manual_close>YES</manual_close>
         </trigger>
     </triggers>
 </zabbix_export>
